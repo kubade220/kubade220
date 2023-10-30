@@ -12,4 +12,3 @@ jobs:
       - uses: kubade220/.github/workflows/main.yml@main
         with:
           feed_list: "https://medium.com/@nabywaniecjakub"
-		  

@@ -1,14 +1,32 @@
-name: Latest blog post workflow
+name: Update Latest Medium Blogs
+
 on:
-  schedule: # Run workflow automatically
-    - cron: '0 0 * * *' # Runs every day at 12 am
-  workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the Github Actions Workflow page directly
+  schedule:
+    - cron: "0 0 * * *"  # Runs the job daily
+
 jobs:
-  update-readme-with-blog:
-    name: Update this repo's README with latest blog posts
+  update-blogs:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: kubade220/kubade220/.github/workflows/main.yml@main
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          feed_list: "https://medium.com/@nabywaniecjakub"
+          python-version: 3.x  # Choose the appropriate Python version
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update Latest Medium Blogs
+        run: python update_blogs.py  # Replace with your script
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "kubade220"
+          git config user.email "kubix114@wp.pl"
+          git add .
+          git commit -m "Update latest Medium blogs"
+          git push

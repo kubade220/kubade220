@@ -20,4 +20,4 @@ jobs:
           devto_api_key: ${{secrets.DEVTO}}
           gh_token: ${{secrets.GH_TOKEN}}
           medium_token: ${{secrets.MEDIUM}}
-          medium_user_id: <user_id>
+          medium_user_id: nabywaniecjakub

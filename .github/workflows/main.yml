@@ -12,3 +12,4 @@ jobs:
       - uses: main.yml@main
         with:
           feed_list: "https://medium.com/@nabywaniecjakub"
+

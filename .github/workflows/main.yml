@@ -1,23 +1,14 @@
-name: 'publish'
-
+name: Latest blog post workflow
 on:
-  push:
-    branches:
-      - 'main'
-    paths:
-      - 'articles/*'
+  schedule: # Run workflow automatically
+    - cron: '0 0 * * *' # Runs every day at 12 am
+  workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the Github Actions Workflow page directly
 jobs:
-  publish:
-    name: publish new article
-    runs-on: ubuntu-latest    
+  update-readme-with-blog:
+    name: Update this repo's README with latest blog posts
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: kubade220
-        uses: kubade220/main@main
-        with:
-          articles_folder: articles
-          devto_api_key: ${{secrets.DEVTO}}
-          gh_token: ${{secrets.GH_TOKEN}}
-          medium_token: ${{secrets.MEDIUM}}
-          medium_user_id: nabywaniecjakub
+      - uses: actions/checkout@v2
+      - uses: kubade220/.github/workflows/main.yml@main
+        with: kubade220
+          feed_list: "https://medium.com/@nabywaniecjakub"

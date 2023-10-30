@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: kubade220/.github/workflows/main.yml@main
+      - uses: kubade220/main.yml@main
         with:
           feed_list: "https://medium.com/@nabywaniecjakub"
